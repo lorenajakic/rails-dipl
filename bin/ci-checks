@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o pipefail
+set -o nounset
+
+echo "=========== zeitwerk check ==========="
+time bundle exec rails zeitwerk:check
+
+echo "=========== rubocop  ==========="
+time bundle exec rubocop --format simple --format github --color --parallel
+
+echo "=========== bundle audit ==========="
+time bundle exec bundle-audit update --quiet
+time bundle exec bundle-audit check
+
+echo "=========== brakeman ==========="
+time bundle exec brakeman -q --color
+
+echo "=========== rails db:test:prepare ==========="
+time bundle exec rails db:test:prepare
+
+echo "=========== rspec ==========="
+time bundle exec rspec --force-color

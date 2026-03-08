@@ -1,0 +1,113 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'bundler/setup'
+require 'English'
+require 'thor'
+require 'json'
+
+class CLI < Thor
+  DEFAULT_SERVICE = 'library'
+  DEFAULT_ENV = 'staging'
+  DEFAULT_CLUSTERS = {
+    staging: 'infinum-staging-cluster',
+    production: 'infinum-production-cluster'
+  }.freeze
+  DEFAULT_PROFILE = 'library'
+  DEFAULT_COMMAND = '/bin/sh'
+
+  class_option :profile, default: DEFAULT_PROFILE
+  class_option :debug, aliases: :d, type: :boolean
+
+  option :service, aliases: :s, default: DEFAULT_SERVICE
+  option :cluster, alises: :c
+  option :container
+  option :env, aliases: :e, default: DEFAULT_ENV
+
+  def self.exit_on_failure?
+    true
+  end
+
+  desc 'exec COMMAND', "Execute COMMAND in container. Default command is #{DEFAULT_COMMAND}"
+  def exec(command = DEFAULT_COMMAND)
+    verify_setup
+    task_arn = find_task_arn
+
+    Kernel.exec "aws ecs execute-command #{exec_command_args(task_arn, command).join(' ')}"
+  end
+
+  private
+
+  def verify_setup
+    check_aws_cli_version!
+
+    if aws_profile_exists?
+      puts "AWS profile '#{options[:profile]}' is already configured" if debug?
+    else
+      fail_with "To run commands you need to configure AWS profile. Please configure #{options[:profile]} profile"
+    end
+  end
+
+  def check_aws_cli_version!
+    version = `aws --version #{'--debug' if debug?}`
+    fail_with 'AWS CLI version 2 is required' unless version.start_with?('aws-cli/2')
+
+    puts "AWS CLI v2 is intalled. Version: #{version}" if debug?
+  end
+
+  def aws_profile_exists?
+    profiles = `aws configure list-profiles #{'--debug' if debug?}`
+    fail_with 'Cannot list AWS profiles' unless $CHILD_STATUS.success?
+
+    profiles.split("\n").include?(options[:profile])
+  end
+
+  def find_task_arn
+    output = `aws ecs list-tasks #{list_tasks_args.join(' ')}`
+
+    fail_with 'Cannot list ECS tasks, see above error (set --debug flag for more info)' unless $CHILD_STATUS.success?
+
+    JSON.parse(output).dig('taskArns', 0) || fail_with('There are no task definitions')
+  end
+
+  def cluster
+    options[:cluster] || DEFAULT_CLUSTERS.fetch(options[:env].to_sym)
+  end
+
+  def exec_command_args(task_arn, command)
+    args = [
+      "--task #{task_arn}",
+      "--command #{command}",
+      "--cluster #{cluster}",
+      "--profile #{options[:profile]}",
+      '--interactive'
+    ]
+    args << "--container #{options[:container]}" if options[:container]
+    args << '--debug' if debug?
+
+    args
+  end
+
+  def list_tasks_args
+    args = [
+      '--output json',
+      "--cluster #{cluster}",
+      "--service #{options[:service]}",
+      "--profile #{options[:profile]}"
+    ]
+    args << '--debug' if debug?
+
+    args
+  end
+
+  def debug?
+    options[:debug]
+  end
+
+  def fail_with(message)
+    puts message
+    exit 1
+  end
+end
+
+CLI.start(ARGV)

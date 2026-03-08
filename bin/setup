@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'pathname'
+
+APP_ROOT = Pathname.new File.expand_path('..', __dir__)
+
+Dir.chdir APP_ROOT do
+  puts '== Installing dependencies =='
+  system 'gem install bundler --conservative'
+  system 'bundle check || bundle install'
+
+  puts '== Setting up AWS profile =='
+  system 'bin/remote configure'
+
+  puts '== Installing overcommit =='
+  system 'bundle exec overcommit --install'
+  system 'bundle exec overcommit --sign'
+  system 'bundle exec overcommit --sign pre-push'
+
+  unless File.exist?('.env')
+    puts "\n== Initialize params =="
+    system 'cp sample.env .env'
+  end
+
+  puts '== Preparing database =='
+  system 'bin/rake db:setup'
+
+  puts '== Removing old logs and tempfiles =='
+  system 'bin/rails log:clear tmp:clear'
+end

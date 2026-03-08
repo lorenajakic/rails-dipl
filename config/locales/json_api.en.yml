@@ -1,0 +1,21 @@
+en:
+  json_api:
+    errors:
+      bad_request:
+        title: Bad Request
+        detail: Bad request
+      not_found:
+        title: Not found
+        detail: Resource not found
+      forbidden:
+        title: Forbidden
+        detail: You are not allowed to perform this action
+      unauthorized:
+        title: Unauthorized
+        detail: Must be logged in to perform this action
+      unprocessable_entity:
+        title: Unprocessable Entity
+        detail: Cannot process request
+      internal_server_error:
+        title: Internal Server Error
+        detail: Something went wrong
