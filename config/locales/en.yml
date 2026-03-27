@@ -29,8 +29,3 @@
 
 en:
   hello: "Hello world"
-  errors:
-    messages:
-      book_already_on_shelf: "has already been added to the shelf"
-      genre_already_on_book: "has already been added to the book"
-      book_already_rated: "has already been rated"
