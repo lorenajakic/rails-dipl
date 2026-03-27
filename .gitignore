@@ -2,3 +2,5 @@
 .sample.env
 tmp/
 example-app/
+storage/
+log/
