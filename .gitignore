@@ -4,3 +4,5 @@ tmp/
 example-app/
 storage/
 log/
+LLMAgentt/
+.cursor/
