@@ -1,0 +1,42 @@
+<div class="mx-auto max-w-2xl">
+  <h1 class="text-2xl font-bold text-gray-900 mb-8">Account Settings</h1>
+
+  <div class="overflow-hidden rounded-xl bg-white shadow-sm">
+    <div class="px-8 py-10">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "space-y-7" }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div>
+          <%= f.label :email, class: "block text-sm font-medium text-gray-700 mb-2" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block w-full rounded-lg border border-gray-300 px-4 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" %>
+        </div>
+
+        <hr class="border-gray-200">
+
+        <div>
+          <%= f.label :password, "New password", class: "block text-sm font-medium text-gray-700 mb-2" %>
+          <%= f.password_field :password, autocomplete: "new-password", class: "block w-full rounded-lg border border-gray-300 px-4 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" %>
+          <p class="mt-2 text-xs text-gray-500">Leave blank if you don't want to change it</p>
+        </div>
+
+        <div>
+          <%= f.label :password_confirmation, class: "block text-sm font-medium text-gray-700 mb-2" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "block w-full rounded-lg border border-gray-300 px-4 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" %>
+        </div>
+
+        <hr class="border-gray-200">
+
+        <div>
+          <%= f.label :current_password, class: "block text-sm font-medium text-gray-700 mb-2" %>
+          <%= f.password_field :current_password, autocomplete: "current-password", class: "block w-full rounded-lg border border-gray-300 px-4 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" %>
+          <p class="mt-2 text-xs text-gray-500">We need your current password to confirm changes</p>
+        </div>
+
+        <div class="flex items-center gap-4 pt-2">
+          <%= f.submit "Save changes", class: "rounded-lg bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 cursor-pointer" %>
+          <%= link_to "Cancel", profile_path, class: "text-sm font-semibold text-gray-700 hover:text-gray-900" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

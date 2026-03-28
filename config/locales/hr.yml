@@ -1,0 +1,244 @@
+hr:
+  activerecord:
+    errors:
+      models:
+        ticket:
+          attributes:
+            file:
+              blank: "Priložite PDF ili sliku."
+              invalid_type: "mora biti PDF ili slika (JPEG, PNG, WebP)."
+              too_large: "ne smije biti veći od 20 MB."
+
+  date:
+    formats:
+      short: "%-d. %b"
+      long: "%-d. %b %Y."
+    abbr_month_names:
+      - ~
+      - "sij"
+      - "velj"
+      - "ožu"
+      - "tra"
+      - "svi"
+      - "lip"
+      - "srp"
+      - "kol"
+      - "ruj"
+      - "lis"
+      - "stu"
+      - "pro"
+    month_names:
+      - ~
+      - "siječanj"
+      - "veljača"
+      - "ožujak"
+      - "travanj"
+      - "svibanj"
+      - "lipanj"
+      - "srpanj"
+      - "kolovoz"
+      - "rujan"
+      - "listopad"
+      - "studeni"
+      - "prosinac"
+
+  app_name: "TripPlanner"
+
+  nav:
+    profile: "Profil"
+    sign_out: "Odjava"
+    invitations: "Pozivnice na putovanja"
+
+  dashboard:
+    title: "Moja putovanja"
+    new_trip: "Novo putovanje"
+    no_trips: "Nema putovanja"
+    no_trips_hint: "Kreirajte svoje prvo putovanje!"
+    create_first_trip: "Kreiraj prvo putovanje"
+    days_count:
+      one: "%{count} dan"
+      few: "%{count} dana"
+      other: "%{count} dana"
+
+  trips:
+    new_title: "Novo putovanje"
+    edit_title: "Uredi putovanje"
+    back_to_trips: "Moja putovanja"
+    back_to_trip: "Natrag na %{title}"
+    created: "Putovanje uspješno kreirano."
+    updated: "Putovanje uspješno ažurirano."
+    deleted: "Putovanje uspješno obrisano."
+    not_participant: "Niste sudionik ovog putovanja."
+    only_creator: "Samo kreator putovanja može izvršiti ovu radnju."
+    not_editable: "Ovo putovanje se više ne može uređivati."
+    confirm_delete: "Jeste li sigurni da želite obrisati ovo putovanje?"
+    errors:
+      overlapping: "Datumi se preklapaju s putovanjem \"%{trip_title}\". Putovanja mogu dijeliti granični dan, ali se ne smiju preklapati."
+    statuses:
+      draft: "Skica"
+      planning: "Planiranje"
+      finalized: "Završeno"
+      completed: "Dovršeno"
+    form:
+      title: "Naziv"
+      title_placeholder: "npr. Avantura u Parizu"
+      destination: "Odredište"
+      destination_placeholder: "npr. Pariz, Francuska"
+      start_date: "Datum početka"
+      end_date: "Datum završetka"
+      cover_image: "Naslovna slika"
+      cover_image_hint: "JPG, PNG ili WebP. Preporučeno 1200x400."
+      errors_title: "Ispravite sljedeće greške:"
+    show:
+      participants: "Sudionici"
+      creator: "kreator"
+      edit: "Uredi"
+      delete: "Obriši"
+    tabs:
+      places: "Mjesta"
+      itinerary: "Plan puta"
+      chat: "Chat"
+      tickets: "Karte"
+    placeholders:
+      places: "Pretražite i dodajte mjesta u putovanje. Uskoro dostupno."
+      itinerary: "Vaš dnevni plan putovanja će se pojaviti ovdje. Uskoro dostupno."
+      chat: "Not implemented"
+      tickets: "Učitajte i upravljajte putnim dokumentima. Uskoro dostupno."
+
+  invitations:
+    page_title: "Pozivnice"
+    invite_title: "Pozovi ljude"
+    email_placeholder: "Email adresa..."
+    invite_button: "Pozovi"
+    pending_badge: "Na čekanju"
+    sent: "Pozivnica uspješno poslana."
+    accepted: "Pridružili ste se putovanju!"
+    declined: "Pozivnica odbijena."
+    not_found: "Pozivnica nije pronađena."
+    invited_by: "Pozvao/la %{name}"
+    ago: ""
+    accept_button: "Prihvati"
+    decline_button: "Odbij"
+    no_invitations: "Nema pozivnica na čekanju"
+    no_invitations_hint: "Kada vas netko pozove na putovanje, pozivnica će se pojaviti ovdje."
+    errors:
+      user_not_found: "Korisnik s ovom email adresom ne postoji."
+      already_participant: "Ovaj korisnik je već sudionik."
+      already_invited: "Pozivnica je već poslana na ovaj email."
+
+  profiles:
+    title: "Profil"
+    edit_title: "Uredi profil"
+    change_password: "Promijeni lozinku"
+    edit_profile: "Uredi profil"
+    name: "Ime"
+    avatar: "Avatar"
+    save: "Spremi promjene"
+    updated: "Profil uspješno ažuriran."
+
+  pundit:
+    not_authorized: "Nemate ovlasti za ovu radnju."
+
+  tickets:
+    created: "Karta je spremljena."
+    updated: "Karta je ažurirana."
+    deleted: "Karta je uklonjena."
+    add_ticket: "Dodaj kartu"
+    add_first: "Dodaj prvu kartu"
+    tab_heading: "Dokumenti i karte"
+    tab_subheading:
+      zero: "Nema dokumenata"
+      one: "%{count} dokument"
+      few: "%{count} dokumenta"
+      other: "%{count} dokumenata"
+    new_title: "Dodaj kartu"
+    new_subtitle: "Učitaj dokument za putovanje %{title}."
+    edit_title: "Uredi kartu"
+    edit_subtitle: "Ažuriraj podatke za %{title}."
+    back_to_trip: "Natrag na putovanje"
+    back_to_tickets_tab: "Natrag na karte"
+    empty_title: "Još nema karata"
+    empty_hint: "Dodajte letove, hotele, ulaznice ili prijevoz."
+    uploaded_by: "Učitao/la"
+    open_pdf: "Otvori PDF"
+    open_image: "Prikaži sliku"
+    view_pdf: "Prikaži PDF"
+    view_image: "Prikaži sliku"
+    download_pdf: "Otvori / preuzmi PDF"
+    download_image: "Otvori / preuzmi sliku"
+    confirm_delete: "Ukloniti ovu kartu?"
+    file_invalid_type: "Odaberite PDF ili sliku (JPEG, PNG, WebP)."
+    file_too_large: "Datoteka ne smije biti veća od 20 MB."
+    filters:
+      all: "Sve"
+    categories:
+      flight: "Let"
+      accommodation: "Hotel"
+      activity: "Aktivnost"
+      transport: "Prijevoz"
+      other: "Ostalo"
+    form:
+      section_details: "Detalji"
+      title: "Naslov"
+      title_placeholder: "npr. Zagreb → Pariz, Hotel Le Marais…"
+      category: "Kategorija"
+      date: "Datum"
+      details: "Detalji / bilješke"
+      details_placeholder: "Broj rezervacije, potvrda, dodatne info…"
+      cost: "Cijena (neobavezno)"
+      cost_label: "Cijena (neobavezno)"
+      currency: "Valuta"
+      file: "Prilog"
+      file_cta: "Kliknite za odabir datoteke"
+      file_hint: "PDF ili slika — do 20 MB"
+      file_keep_hint: "Ostavite prazno ako želite zadržati postojeću datoteku."
+      submit: "Spremi kartu"
+      submit_update: "Spremi promjene"
+
+  places:
+    search_placeholder: "Pretraži mjesto..."
+    add_manually: "Dodaj mjesto ručno"
+    added_places:
+      zero: "Nema dodanih mjesta"
+      one: "%{count} mjesto dodano"
+      few: "%{count} mjesta dodana"
+      other: "%{count} mjesta dodano"
+    empty_title: "Još nema mjesta"
+    empty_hint: "Pretražite mjesto (prvo odaberite kategoriju) ili kliknite na kartu na znamenitost — pokušat ćemo učitati naziv."
+    pin_dropped: "Pin postavljen na kartu"
+    reverse_loading: "Provjera lokacije…"
+    reverse_not_found: "Nema naziva — upišite sami"
+    map_pick_title: "Mjesto na karti"
+    map_pick_subtitle: "Naziv i adresa dolaze iz OpenStreetMapa. Ispravite po potrebi, odaberite kategoriju, zatim dodajte."
+    map_hint: "Kliknite na znamenitost ili zgradu na karti da se učita naziv, ili koristite pretragu iznad."
+    confirm_delete: "Ukloniti ovo mjesto?"
+    added_by: "Dodao/la"
+    comment_placeholder: "Dodaj komentar..."
+    add_comment: "Objavi"
+    categories:
+      restaurant: "Restoran"
+      museum: "Muzej"
+      park: "Park"
+      landmark: "Znamenitost"
+      shopping: "Shopping"
+      entertainment: "Zabava"
+      other: "Ostalo"
+    form:
+      name: "Naziv"
+      name_placeholder: "npr. Eiffelov toranj"
+      latitude: "Geografska širina"
+      longitude: "Geografska dužina"
+      category: "Kategorija"
+      duration: "Trajanje (min)"
+      submit: "Dodaj mjesto"
+
+  confirm_dialog:
+    title: "Jeste li sigurni?"
+    cancel: "Odustani"
+    confirm: "Da, obriši"
+
+  common:
+    cancel: "Odustani"
+    edit: "Uredi"
+    delete: "Obriši"
+    save: "Spremi"

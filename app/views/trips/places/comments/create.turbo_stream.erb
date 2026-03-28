@@ -1,0 +1,7 @@
+<%= turbo_stream.append dom_id(@comment.place, :comments) do %>
+  <%= render partial: 'trips/places/comments/comment', locals: { comment: @comment, trip: @trip, place: @comment.place } %>
+<% end %>
+
+<%= turbo_stream.replace dom_id(@comment.place, :new_comment) do %>
+  <%= render partial: 'trips/places/comments/form', locals: { trip: @trip, place: @comment.place } %>
+<% end %>
